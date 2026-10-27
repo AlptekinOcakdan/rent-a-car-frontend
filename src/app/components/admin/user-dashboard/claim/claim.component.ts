@@ -5,6 +5,7 @@ import { UserService } from './../../../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-claim',
   templateUrl: './claim.component.html',
   styleUrls: ['./claim.component.css']

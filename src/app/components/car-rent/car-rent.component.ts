@@ -12,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 
 
 @Component({
+  standalone: false,
   selector: 'app-car-rent',
   templateUrl: './car-rent.component.html',
   styleUrls: ['./car-rent.component.css']

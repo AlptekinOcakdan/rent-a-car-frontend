@@ -8,6 +8,7 @@ import { BrandAddComponent } from './brand-add/brand-add.component';
 import { BrandUpdateComponent } from './brand-update/brand-update.component';
 
 @Component({
+  standalone: false,
   selector: 'app-brand-dashboard',
   templateUrl: './brand-dashboard.component.html',
   styleUrls: ['./brand-dashboard.component.css'],
@@ -18,7 +19,7 @@ export class BrandDashboardComponent implements OnInit {
   brands: Brand[];
   brandsLoaded = false;
 
-  ref: DynamicDialogRef;
+  ref: DynamicDialogRef | null;
 
 
   constructor(
@@ -46,13 +47,14 @@ export class BrandDashboardComponent implements OnInit {
 
   addBrand() {
     this.ref = this.dialogService.open(BrandAddComponent, {
+      closable: true,
       header: 'Add Brand',
       width: '40%',
       height: '300px',
       contentStyle: { 'overflow': 'auto' }
     });
 
-    this.ref.onClose.subscribe(() => {
+    this.ref?.onClose.subscribe(() => {
       this.getBrands();
     }
     )
@@ -82,6 +84,7 @@ export class BrandDashboardComponent implements OnInit {
 
   editBrand(brand: Brand) {
     this.ref = this.dialogService.open(BrandUpdateComponent, {
+      closable: true,
       header: 'Update ' + brand.name,
       width: '40%',
       contentStyle: {'overflow': 'auto' },
@@ -89,7 +92,7 @@ export class BrandDashboardComponent implements OnInit {
 
     });
 
-    this.ref.onClose.subscribe(() => {
+    this.ref?.onClose.subscribe(() => {
       this.getBrands();
     }
     )

@@ -12,14 +12,14 @@
       <ng-template pTemplate="content">
 
         <form class="floating" [formGroup]="loginForm">
-          <span class="p-float-label mb-3">
+          <p-floatlabel class="mb-3">
             <input id="email" type="email" pInputText formControlName="email" class="p-inputtext w-100">
             <label for="email">Email</label>
-          </span>
-          <span class="p-float-label mb-5">
+          </p-floatlabel>
+          <p-floatlabel class="mb-5">
             <input id="password" type="password" pInputText formControlName="password" class="p-inputtext w-100">
             <label for="password">Password</label>
-          </span>
+          </p-floatlabel>
           <button pButton type="submit" label="Login" (click)="login()" [disabled]="loginForm.invalid" class="w-100"></button>
         </form>
       </ng-template>

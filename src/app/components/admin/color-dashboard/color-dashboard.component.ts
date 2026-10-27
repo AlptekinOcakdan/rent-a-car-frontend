@@ -8,6 +8,7 @@ import { ColorUpdateComponent } from './color-update/color-update.component';
 import { ColorAddComponent } from './color-add/color-add.component';
 
 @Component({
+  standalone: false,
   selector: 'app-color-dashboard',
   templateUrl: './color-dashboard.component.html',
   styleUrls: ['./color-dashboard.component.css'],
@@ -19,7 +20,7 @@ export class ColorDashboardComponent implements OnInit {
   colors: Color[];
   colorsLoaded = false;
 
-  ref: DynamicDialogRef;
+  ref: DynamicDialogRef | null;
 
 
   constructor(
@@ -47,13 +48,14 @@ export class ColorDashboardComponent implements OnInit {
 
   addColor() {
     this.ref = this.dialogService.open(ColorAddComponent, {
+      closable: true,
       header: 'Add Color',
       width: '40%',
       height: '300px',
       contentStyle: { 'overflow': 'auto' }
     });
 
-    this.ref.onClose.subscribe(() => {
+    this.ref?.onClose.subscribe(() => {
       this.getColors();
     }
     )
@@ -83,6 +85,7 @@ export class ColorDashboardComponent implements OnInit {
 
   editColor(color: Color) {
     this.ref = this.dialogService.open(ColorUpdateComponent, {
+      closable: true,
       header: 'Update ' + color.name,
       width: '40%',
       contentStyle: { 'overflow': 'auto' },
@@ -90,7 +93,7 @@ export class ColorDashboardComponent implements OnInit {
 
     });
 
-    this.ref.onClose.subscribe(() => {
+    this.ref?.onClose.subscribe(() => {
       this.getColors();
     }
     )

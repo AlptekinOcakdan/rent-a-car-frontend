@@ -6,6 +6,7 @@ import { Color } from './../../../../models/color';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-color-update',
   templateUrl: './color-update.component.html',
   styleUrls: ['./color-update.component.css']

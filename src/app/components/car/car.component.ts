@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
+  standalone: false,
   selector: 'app-car',
   templateUrl: './car.component.html',
   styleUrls: ['./car.component.css'],
@@ -30,7 +31,7 @@ export class CarComponent implements OnInit {
   colorsLoaded = false;
 
 
-  ref: DynamicDialogRef
+  ref: DynamicDialogRef | null;
 
 
   constructor(private carService: CarService,
@@ -101,6 +102,7 @@ export class CarComponent implements OnInit {
 
   rent(car:CarDetail){
     this.ref = this.dialogService.open(CarRentComponent, {
+      closable: true,
       header: 'Rent Car',
       width: '70%',
       contentStyle: { 'overflow': 'auto' },

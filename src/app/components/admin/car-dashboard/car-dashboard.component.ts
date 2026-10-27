@@ -9,6 +9,7 @@ import { CarAddComponent } from './car-add/car-add.component';
 import { CarUpdateComponent } from './car-update/car-update.component';
 
 @Component({
+  standalone: false,
   selector: 'app-car-dashboard',
   templateUrl: './car-dashboard.component.html',
   styleUrls: ['./car-dashboard.component.css'],
@@ -20,7 +21,7 @@ export class CarDashboardComponent implements OnInit {
   cars:CarDetail[]
   carsLoaded=false;
 
-  ref: DynamicDialogRef;
+  ref: DynamicDialogRef | null;
 
 
   constructor(
@@ -60,12 +61,13 @@ export class CarDashboardComponent implements OnInit {
 
   addCar(){
     this.ref = this.dialogService.open(CarAddComponent, {
+      closable: true,
       header: 'Add Car',
       width: '70%',
       contentStyle: { 'min-height': '300px', 'overflow': 'auto' }
     });
 
-    this.ref.onClose.subscribe(() => {
+    this.ref?.onClose.subscribe(() => {
       this.getCars();
     });
 
@@ -74,6 +76,7 @@ export class CarDashboardComponent implements OnInit {
 
   editCar(car: CarDetail){
     this.ref = this.dialogService.open(CarUpdateComponent, {
+      closable: true,
       header: 'Update Car',
       width: '70%',
       contentStyle: { 'min-height': '300px', 'overflow': 'auto' },
@@ -81,7 +84,7 @@ export class CarDashboardComponent implements OnInit {
 
     });
 
-    this.ref.onClose.subscribe(() => {
+    this.ref?.onClose.subscribe(() => {
       this.getCars();
     });
   }

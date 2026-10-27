@@ -8,3 +8,8 @@ input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 1000px rgb(30, 30, 30) inset !important;
   -webkit-text-fill-color: white;
 }
+
+/* PrimeNG 18+ dropped the .p-fluid utility; restore the PrimeNG 13 behaviour for templates that still use it */
+.p-fluid .p-inputtext, .p-fluid .p-button { width: 100%; }
+/* PrimeNG 13 card.css stretched header images; the PrimeNG 18+ card style no longer does */
+.p-card-header img { width: 100%; }

@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 
 @Component({
+  standalone: false,
   selector: 'app-user-dashboard',
   templateUrl: './user-dashboard.component.html',
   styleUrls: ['./user-dashboard.component.css'],
@@ -20,7 +21,7 @@ export class UserDashboardComponent implements OnInit {
   users: UserModel[];
   usersLoaded = false;
 
-  ref: DynamicDialogRef;
+  ref: DynamicDialogRef | null;
 
   ngOnInit(): void {
     this.getUsers()
@@ -38,6 +39,7 @@ export class UserDashboardComponent implements OnInit {
 
   claims(user: UserModel){
     this.ref = this.dialogService.open(ClaimComponent, {
+      closable: true,
       header: 'Claims of ' + user.firstName + " " + user.lastName,
       width: '40%',
       contentStyle: { 'min-height':'300px', 'overflow': 'auto' },

@@ -12,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
 @Component({
+  standalone: false,
   selector: 'app-car-update',
   templateUrl: './car-update.component.html',
   styleUrls: ['./car-update.component.css']

@@ -6,6 +6,7 @@ import { Brand } from './../../../../models/brand';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-brand-update',
   templateUrl: './brand-update.component.html',
   styleUrls: ['./brand-update.component.css']

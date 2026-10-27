@@ -3,6 +3,7 @@ import { RentalDetail } from './../../../models/rentalDetail';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-rental-dashboard',
   templateUrl: './rental-dashboard.component.html',
   styleUrls: ['./rental-dashboard.component.css']

@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-color-add',
   templateUrl: './color-add.component.html',
   styleUrls: ['./color-add.component.css']

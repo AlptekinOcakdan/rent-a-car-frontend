@@ -20,7 +20,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
-import { DropdownModule } from 'primeng/dropdown';
+import { SelectModule } from 'primeng/select';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ListboxModule } from 'primeng/listbox';
@@ -36,7 +36,7 @@ import { BrandDashboardComponent } from './components/admin/brand-dashboard/bran
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { FileUploadModule } from 'primeng/fileupload';
-import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TextareaModule } from 'primeng/textarea';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CarUpdateComponent } from './components/admin/car-dashboard/car-update/car-update.component';
 import { ApiImagePipe } from './pipes/api-image.pipe';
@@ -46,12 +46,23 @@ import { BrandUpdateComponent } from './components/admin/brand-dashboard/brand-u
 import { ColorAddComponent } from './components/admin/color-dashboard/color-add/color-add.component';
 import { ColorUpdateComponent } from './components/admin/color-dashboard/color-update/color-update.component';
 import { TimelineModule } from 'primeng/timeline';
-import { CalendarModule } from 'primeng/calendar';
+import { DatePickerModule } from 'primeng/datepicker';
 import { InputMaskModule } from 'primeng/inputmask';
 import { UserDashboardComponent } from './components/admin/user-dashboard/user-dashboard.component';
 import { RentalDashboardComponent } from './components/admin/rental-dashboard/rental-dashboard.component';
 import { ClaimComponent } from './components/admin/user-dashboard/claim/claim.component';
 import { FieldsetModule } from 'primeng/fieldset';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { providePrimeNG } from 'primeng/config';
+import { definePreset } from '@primeuix/themes';
+import Material from '@primeuix/themes/material';
+
+// PrimeNG 18+ dropped CSS themes; this preset + .app-dark on <html> replaces the old mdc-dark-deeppurple theme.
+const MaterialDeepPurple = definePreset(Material, {
+  semantic: {
+    primary: Object.fromEntries([50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950].map(s => [s, '{purple.' + s + '}']))
+  }
+});
 
 
 
@@ -94,7 +105,7 @@ import { FieldsetModule } from 'primeng/fieldset';
     }),
     CardModule,
     ButtonModule,
-    DropdownModule,
+    SelectModule,
     InputTextModule,
     InputNumberModule,
     ListboxModule,
@@ -106,17 +117,19 @@ import { FieldsetModule } from 'primeng/fieldset';
     PanelMenuModule,
     DynamicDialogModule,
     FileUploadModule,
-    InputTextareaModule,
+    TextareaModule,
     ConfirmDialogModule,
     CarouselModule,
     TimelineModule,
-    CalendarModule,
+    DatePickerModule,
     InputMaskModule,
-    FieldsetModule
+    FieldsetModule,
+    FloatLabelModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorHandleInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorHandleInterceptor, multi: true },
+    providePrimeNG({ theme: { preset: MaterialDeepPurple, options: { darkModeSelector: '.app-dark' } } })
   ],
   bootstrap: [AppComponent]
 })

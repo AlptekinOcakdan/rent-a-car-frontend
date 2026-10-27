@@ -2,6 +2,7 @@ import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-navi',
   templateUrl: './navi.component.html',
   styleUrls: ['./navi.component.css']

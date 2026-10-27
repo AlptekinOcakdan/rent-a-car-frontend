@@ -7,6 +7,7 @@ import { CarDetail } from './../../models/carDetail';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-car-detail',
   templateUrl: './car-detail.component.html',
   styleUrls: ['./car-detail.component.css'],
@@ -21,7 +22,7 @@ export class CarDetailComponent implements OnInit {
 
   attributes: any[] = []
 
-  ref: DynamicDialogRef;
+  ref: DynamicDialogRef | null;
 
   constructor(private carService: CarService,
     private activatedRoute: ActivatedRoute,
@@ -65,6 +66,7 @@ export class CarDetailComponent implements OnInit {
 
   rent(){
     this.ref = this.dialogService.open(CarRentComponent, {
+      closable: true,
       header: 'Rent Car',
       width: '70%',
       contentStyle: { 'overflow': 'auto' },

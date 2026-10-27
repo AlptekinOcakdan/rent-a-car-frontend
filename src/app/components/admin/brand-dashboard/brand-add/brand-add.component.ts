@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-brand-add',
   templateUrl: './brand-add.component.html',
   styleUrls: ['./brand-add.component.css']

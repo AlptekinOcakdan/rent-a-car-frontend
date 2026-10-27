@@ -13,31 +13,35 @@
         <li><a routerLink="/cars" class="nav-link px-2 text-white">Cars</a></li>
         <li><a href="https://github.com/AlptekinOcakdan/RentACar/tree/FrontEnd" target="_blank" class="nav-link px-2 text-white">About</a></li>
         <li>
-          <div *ngIf="isAdmin()" class="">
-            <p-button routerLink="/admin" label="Admin Dashboard" styleClass="p-button-text"></p-button>
-          </div>
+          @if (isAdmin()) {
+            <div class="">
+              <p-button routerLink="/admin" label="Admin Dashboard" styleClass="p-button-text"></p-button>
+            </div>
+          }
         </li>
       </ul>
 
 
-      <div *ngIf="!isLoggedIn()">
-        <button routerLink="/login" type="button" class="btn btn-outline-light me-2">Login</button>
-        <button routerLink="/register" type="button" class="btn btn-outline-light">Register</button>
-      </div>
+      @if (!isLoggedIn()) {
+        <div>
+          <button routerLink="/login" type="button" class="btn btn-outline-light me-2">Login</button>
+          <button routerLink="/register" type="button" class="btn btn-outline-light">Register</button>
+        </div>
+      }
 
-      <div *ngIf="isLoggedIn()">
-
-        <div ngbDropdown class="d-inline-block">
-
-          <button type="button" class="btn btn-outline-light" id="dropdownBasic1"
+      @if (isLoggedIn()) {
+        <div>
+          <div ngbDropdown class="d-inline-block">
+            <button type="button" class="btn btn-outline-light" id="dropdownBasic1"
             ngbDropdownToggle>{{getFullName()}}</button>
-          <div ngbDropdownMenu class="bg-dark text-white" aria-labelledby="dropdownBasic1">
-            <button ngbDropdownItem routerLink="/profile"
+            <div ngbDropdownMenu class="bg-dark text-white" aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem routerLink="/profile"
               class="btn btn-outline-light text-white text-center">Profile</button>
-            <button ngbDropdownItem (click)="logOut()" class="text-white text-center">Log out</button>
+              <button ngbDropdownItem (click)="logOut()" class="text-white text-center">Log out</button>
+            </div>
           </div>
         </div>
-      </div>
+      }
 
     </div>
   </div>
